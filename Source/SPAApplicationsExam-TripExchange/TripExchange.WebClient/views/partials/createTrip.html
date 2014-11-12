@@ -1,0 +1,43 @@
+﻿<div class="container animated fadeInRight">
+    <form ng-submit="create()" name="addForm" class="form-horizontal">
+        <fieldset>
+            <legend>Create Trip</legend>
+            <div class="form-group">
+                <label for="from" class="col-md-2 control-label">From</label>
+                <div class="col-md-10">
+                    <select id="from" ng-model="trip.from" required class="form-control">
+                        <option ng-repeat="t in towns" value="{{t}}">{{t}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="to" class="col-md-2 control-label">To</label>
+                <div class="col-md-10">
+                    <select id="to" ng-model="trip.to" required class="form-control">
+                        <option ng-repeat="t in towns" value="{{t}}">{{t}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="seats" class="col-md-2 control-label">Available Seats</label>
+                <div class="col-md-10">
+                    <input id="seats" type="number" required ng-model="trip.availableSeats" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time" class="col-md-2 control-label">Departure Time</label>
+                <div class="col-md-10">
+                    <input id="time" type="datetime-local" required ng-model="trip.departureTime" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button ng-click="redirect()" class="btn btn-default">Cancel</button>
+                    <input type="submit" class="btn btn-primary" id="submit" ng-disabled="addForm.$invalid" value="Submit" />
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+</div>

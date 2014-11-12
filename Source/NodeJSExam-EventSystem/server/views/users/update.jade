@@ -1,0 +1,37 @@
+extends ../shared/layout
+block main-content
+    h1.animated.fadeInRight Profile page
+    .jumbotron
+        form.form-horizontal(method="post")
+            label.animated.fadeInRight(for="username") Username
+            input(id="username" class="form-control" type="text" name="username" value="#{currentUser.username}" placeholder="Username" required="required")
+            br
+            label.animated.fadeInRight(for="oldPassword") Old Password
+            input(id="oldPassword" class="form-control" type="password" name="oldPassword" placeholder="Old Password" required="required")
+            br
+            label.animated.fadeInRight(for="password") New password
+            input(id="password" class="form-control" type="password" name="password" placeholder="Password" required="required")
+            br
+            label.animated.fadeInRight(for="confirm-password") Confirm Password
+            input(id="confirm-password" class="form-control" type="password" name="confirmPassword" placeholder="Confirm password" required="required")
+            br
+            label.animated.fadeInRight(for="phone") Phone
+            input(id="phone" class="form-control" type="text" name="phoneNumber" value="#{currentUser.phoneNumber}" placeholder="Phone")
+            br
+            label.animated.fadeInRight(for="img") Profile image link
+            input(id="img" class="form-control" type="url" name="profileImage" value="#{currentUser.profileImage}" placeholder="Link to your profile image")
+            br
+            label.animated.fadeInRight(for="facebook") Facebook
+            input(id="facebook" class="form-control" type="url" name="facebook" value="#{currentUser.facebook}" placeholder="Facebook")
+            br
+            label.animated.fadeInRight(for="twitter") Twitter
+            input(id="twitter" class="form-control" type="url" name="twitter" value="#{currentUser.twitter}" placeholder="Twitter")
+            br
+            label.animated.fadeInRight(for="linkedIn") LinkedIn
+            input(id="linkedIn" class="form-control" type="url" name="linkedIn" value="#{currentUser.linkedIn}" placeholder="LinkedIn")
+            br
+            label.animated.fadeInRight(for="google") Google+
+            input(id="google" class="form-control" type="url" name="google" value="#{currentUser.google}" placeholder="Google+")
+            br
+            input(type="submit" class="btn btn-primary" value="Save")
+            a.btn.btn-default(href="/") Cancel

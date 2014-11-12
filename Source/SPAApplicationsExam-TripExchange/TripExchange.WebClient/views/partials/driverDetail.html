@@ -1,0 +1,55 @@
+﻿<div class="container">
+    <h1>{{ driver.name }}</h1>
+    <div class="row">
+        <div class="col-lg-3">
+            Upcoming trips : {{ driver.numberOfUpcomingTrips }}
+        </div>
+        <div class="col-lg-3">
+            Total trips : {{ driver.numberOfTotalTrips }}
+        </div>
+        <div class="col-lg-3">
+            <label for="my-trips">Only my trips</label>
+            <input id="my-trips" type="checkbox" ng-model="isMyTrips" />
+            <label for="driver-trips">Only drivers trips</label>
+            <input id="driver-trips" type="checkbox" ng-model="isDriverTrips" />
+        </div>
+        <div class="col-lg-3">
+            <select ng-model="sort">
+                <option ng-selected="true">None</option>
+                <option value="from">From</option>
+                <option value="to">To</option>
+                <option value="-departureTime">Departure Time</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                Driver
+            </div>
+            <div class="col-lg-3">
+                From
+            </div>
+            <div class="col-lg-3">
+                To
+            </div>
+            <div class="col-lg-3">
+                Departure Time
+            </div>
+        </div>
+
+        <div ng-repeat="trip in driver.trips | tripFilter:isMyTrips:isDriverTrips | orderBy: sort" class="row">
+            <a href="#/drivers/{{trip.driverId}}" class="col-lg-3">
+                {{ trip.driverName }}
+            </a>
+            <div class="col-lg-3">
+                {{ trip.from }}
+            </div>
+            <div class="col-lg-3">
+                {{ trip.to }}
+            </div>
+            <a href="#/trips/{{trip.id}}" class="col-lg-3">
+                {{ trip.departureDate | date:'medium' }}
+            </a>
+        </div>
+    </div>
+</div>

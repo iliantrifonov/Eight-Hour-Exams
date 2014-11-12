@@ -1,0 +1,13 @@
+extends ../shared/layout
+block main-content
+    h1.animated.fadeInRight Profile page
+    .jumbotron
+       form.form-horizontal.row
+           .form-group
+               a.btn.btn-default.col-lg-4(href="/profile/update") Update user data
+           .form-group
+               a.btn.btn-default.col-lg-4(href="/profile/addinitiative") Add initiative
+           .form-group
+               a.btn.btn-default.col-lg-4(href="/events/active") List events
+           .form-group
+               a.btn.btn-default.col-lg-4(href="/events/past") List past

@@ -1,0 +1,54 @@
+doctype
+html
+    head
+        title Node JS
+        link(rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/bootstrap-theme.min.css")
+        link(rel="stylesheet" href="/css/animate.css")
+        link(rel="stylesheet" href="/css/site.css")
+    body
+        header.navbar.navbar-default
+            .navbar-header
+                button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href="/") NodeJS Template
+            .navbar-collapse.collapse.navbar-responsive-collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="/") Home
+                    if (currentUser)
+                        if (!currentUser.phoneNumber)
+                            li
+                                a(href="/profile/update") Create event ( You need to add a phone number )
+                        else
+                            li
+                                a(href="/events/create") Create event
+                        li
+                            a(href="/events/active") Active events
+                        li
+                            a(href="/events/past") Past events
+                ul.nav.navbar-nav.navbar-right
+                    if (currentUser)
+                        li
+                            a(href="/profile") Hello, #{currentUser.username}, click here for Profile page.
+                        li
+                            a(href="/logout") Logout
+                    else
+                        li
+                            a(href="/register") Register
+                        li
+                            a(href="/login") Login
+
+        .container
+            if (errorMessage)
+                .alert.alert-danger(role="alert") #{errorMessage}
+
+            block main-content
+
+        footer
+            p.text-center
+                | &copy; Telerik Academy 2014
+        include scripts
+        block page-scripts

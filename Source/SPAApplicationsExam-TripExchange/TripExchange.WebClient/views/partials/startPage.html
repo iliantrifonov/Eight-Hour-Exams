@@ -1,0 +1,60 @@
+﻿<div class="container animated fadeInRight">
+    <h1 class="text-center">Welcome to Trip Exchange</h1>
+    <h2 class="text-center">Find your way home!</h2>
+    <div class="row"></div>
+    <div class="container col-lg-2">
+       Trips: {{ stats.trips }}
+    </div>
+    <div class="container col-lg-2">
+        Finished Trips: {{ stats.finishedTrips }}
+    </div>
+    <div class="container col-lg-2">
+        Users: {{ stats.users }}
+    </div>
+    <div class="container col-lg-2">
+        Drivers: {{ stats.drivers }}
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="text-center">Latest Trips</div>
+            </div>
+            <div class="row" dir-trip-header>
+                <!--<div class="col-lg-3">From</div>
+                <div class="col-lg-3">To</div>
+                <div class="col-lg-3">Driver</div>
+                <div class="col-lg-3">Departure Date</div>-->
+            </div>
+            <div ng-repeat="tr in trips" class="row">
+                <div class="col-lg-3">{{ tr.from }}</div>
+                <div class="col-lg-3">{{ tr.to }}</div>
+                <a href="#/drivers/{{tr.driverId}}" class="col-lg-3">{{ tr.driverName }}</a>
+                <a href="#/trips/{{tr.id}}" class=" col-lg-3">{{ tr.departureDate | date:'medium' }}</a>
+            </div>
+            <h1 ng-if="noDataTrip" class="text-center">
+                No Results !
+            </h1>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="text-center">Latest Drivers</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">Name</div>
+                <div class="col-lg-3">Upcoming trips</div>
+                <div class="col-lg-3">Total trips</div>
+            </div>
+            <div ng-repeat="u in users" class="row">
+                <a href="#/drivers/{{u.id}}" class="col-lg-4">{{ u.name }}</a>
+                <div class="col-lg-4">{{ u.numberOfUpcomingTrips }}</div>
+                <div class="col-lg-4">{{ u.numberOfTotalTrips }}</div>
+            </div>
+            <h1 ng-if="noDataDriver" class="text-center">
+                No Results !
+            </h1>
+        </div>
+    </div>
+</div>

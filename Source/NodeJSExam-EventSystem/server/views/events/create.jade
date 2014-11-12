@@ -1,0 +1,30 @@
+extends ../shared/layout
+block main-content
+    h2 Create event:
+    form.form-horizontal(method="post")
+        label.animated.fadeInRight(for="title") Title
+        input(id="title" class="form-control" type="text" name="title" placeholder="Title" required="required")
+        br
+        label.animated.fadeInRight(for="description") Description
+        textarea(id="description" class="form-control"  name="description" placeholder="Brief description..." required="required")
+        br
+        div.animated.fadeInRight.container Location:
+            br
+            label.animated.fadeInRight(for="lat") Latitude
+            input(id="lat" class="form-control" type="number" name="lat" placeholder="Location")
+            br
+            label.animated.fadeInRight(for="lon") Longitude
+            input(id="lon" class="form-control" type="number" name="lon" placeholder="Location")
+            br
+        label.animated.fadeInRight(for="date") Date and time of the event
+        input(id="date" class="form-control" type="datetime-local" name="date" required="required")
+        br
+        label.animated.fadeInRight(for="category") Choose category
+        select(id="category" class="form-control" name="category" required="required")
+            option(value="Academy initiative") Academy initiative
+            option(value="Free time") Free time
+            option(value="Bar") Bar
+            option(value="Rooftop caffee") Rooftop caffee
+        block type-content
+        input(type="submit" class="btn btn-primary" value="Add event")
+        a.btn.btn-default(href="/") Cancel

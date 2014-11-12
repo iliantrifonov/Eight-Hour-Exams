@@ -1,0 +1,46 @@
+extends ../shared/layout
+block main-content
+    .container
+        h1 Admin Panel
+        .form-group.row
+        div.col-lg-3
+            | Search
+            input.form-control(type="text" id="search")
+        div.col-lg-3
+            | Order by
+            select.form-control(id="order-by")
+                option(value="_id") Id
+                option(value ="username") Username
+        div.col-lg-3
+            | Sort
+            select.form-control(id="sort")
+                option(value="asc") Ascending
+                option(value ="desc") Descending
+        div.col-lg-3
+            | Press to filter
+            a.btn.btn-default.form-control(id="filter") Filter
+
+        table.table.table-striped.table-hover
+            thead
+                tr
+                    th Username
+                    th Id
+            tbody
+            if data
+                - for(var i = 0; i < data.length; i++) {
+                    tr
+                        td #{data[i].username}
+                        td #{data[i]._id}
+                 - }
+
+       ul.pagination
+            li
+                a(id="prev" href="/admin/users?page=#{options.prevPage}&orderBy=#{options.orderBy}&sortType=#{options.sortType}&search=#{options.search}") < <
+            li
+                span(id="page") #{options.page}
+            li
+                a(id="next" href="/admin/users?page=#{options.nextPage}&orderBy=#{options.orderBy}&sortType=#{options.sortType}&search=#{options.search}") > >
+
+
+block page-scripts
+    script(src="../js/list.js")

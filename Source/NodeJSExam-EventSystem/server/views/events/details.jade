@@ -1,0 +1,45 @@
+extends ../shared/layout
+block main-content
+    .container
+        form.form-horizontal(method="post" action="/events/details/#{_id}")
+
+            input(type="submit" class="btn btn-primary" value="Join")
+
+        h1 #{title}
+
+        h3 #{description}
+
+        h3
+           | At  #{location.lat} latitude, #{location.lon} longitude
+        h3 Date #{date}
+        h3 Creator #{creator.username}, phone: #{creator.phone}
+
+        h2.jumbotron Joined:
+            div
+                if joined
+                    - for(var i = 0; i < joined.length; i++ ) {
+                            span #{joined[i].username},
+
+                    -   }
+
+        div Add Comment
+            form.form-horizontal(method="post" action="/comment/#{_id}")
+                label.animated.fadeInRight(for="content") Your comment:
+                textarea(id="content" class="form-control"  name="content" placeholder="Comment.." required="required")
+                br
+                input(type="submit" class="btn btn-primary" value="Add comment")
+
+
+        h3.container Comments
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th User
+                        th Content
+                tbody
+                    - for(var k = 0; k < comments.length; k++) {
+                        tr
+                            td #{comments[k].username}
+                            td #{comments[k].content}
+
+                        - }

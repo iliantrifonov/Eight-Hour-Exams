@@ -1,0 +1,52 @@
+extends ../shared/layout
+block main-content
+    .container
+        h1 All Active Events that you can are eligiable for
+        .form-group.row
+        div.col-lg-3
+            | Search in title
+            input.form-control(type="text" id="search")
+        div.col-lg-3
+            | Order by
+            select.form-control(id="order-by")
+                option(value="date" selected="selected") Event date
+        div.col-lg-3
+            | Sort
+            select.form-control(id="sort")
+                option(value="asc") Ascending
+                option(value ="desc") Descending
+        div.col-lg-3
+            | Show for category :
+            select(id="category" class="form-control" name="category" required="required")
+                option(value="1") Academy initiative
+                option(value="2") Free time
+                option(value="3") Bar
+                option(value="4") Rooftop caffee
+
+        div.col-lg-3
+            | Press to filter
+            a.btn.btn-default.form-control(id="filter") Filter
+        table.table.table-striped.table-hover
+            thead
+                tr
+                    th Title
+                    th Category
+                    th Date
+                    th Details
+            tbody
+            if data
+                - for(var i = 0; i < data.length; i++) {
+                    tr
+                        td #{data[i].title}
+                        td #{data[i].category}
+                        td #{data[i].date}
+                        td
+                            a.btn.btn-success(href="/events/details/#{data[i]._id}") Details
+                    - }
+            ul.pagination
+                li
+                    a(id="prev" href="/events/active?page=#{options.prevPage}&orderBy=#{options.orderBy}&sortType=#{options.sortType}&search=#{options.search}&category=#{options.category}") < <
+                li
+                    span(id="page") #{options.page}
+                li
+                    a(id="next" href="/events/active?page=#{options.nextPage}&orderBy=#{options.orderBy}&sortType=#{options.sortType}&search=#{options.search}&category=#{options.category}") > >

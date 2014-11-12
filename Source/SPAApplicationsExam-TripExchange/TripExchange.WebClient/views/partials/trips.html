@@ -1,0 +1,114 @@
+﻿<div class="container animated fadeInRight">
+    <div id="public" ng-hide="identity.isAuthenticated()">
+        <h1 class="text-center">Trips</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">From</div>
+                    <div class="col-lg-3">To</div>
+                    <div class="col-lg-3">Driver</div>
+                    <div class="col-lg-3">Departure Date</div>
+                </div>
+                <div ng-repeat="tr in tripsPublic" class="row">
+                    <div class="col-lg-3">{{ tr.from }}</div>
+                    <div class="col-lg-3">{{ tr.to }}</div>
+                    <a href="#/drivers/{{tr.driverId}}" class="col-lg-3">{{ tr.driverName }}</a>
+                    <a href="#/trips/{{tr.id}}" class=" col-lg-3">{{ tr.departureDate | date:'medium' }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="private" ng-show="identity.isAuthenticated()">
+        <div class="row">
+            <h1 class="col-lg-9 text-center">
+                Trips
+            </h1>
+            <div class="col-lg-3">
+                <button ng-click="redirectCreate()" class="btn btn-lg pull-right">Create Trip</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 text-center">
+                Sort
+            </div>
+            <div class="col-lg-3 text-center">
+                Order
+            </div>
+            <div class="col-lg-3 text-center">
+                From
+            </div>
+            <div class="col-lg-3 text-center">
+                To
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 text-center">
+                <select ng-model="orderBy" class="form-control">
+                    <option ng-selected value="driver">Driver</option>
+                    <option value="date">Date</option>
+                    <option value="seats">Seats</option>
+                </select>
+            </div>
+            <div class="col-lg-3 text-center">
+                <select ng-model="orderType" class="form-control">
+                    <option ng-selected value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+            <div class="col-lg-3 text-center">
+                <select ng-model="from" class="form-control">
+                    <option ng-selected value="">None</option>
+                    <option ng-repeat="town in towns" value="{{town}}">{{town}}</option>
+                </select>
+            </div>
+            <div class="col-lg-3 text-center">
+                <select ng-model="to" class="form-control">
+                    <option ng-selected value="">None</option>
+                    <option ng-repeat="town in towns" value="{{town}}">{{town}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="finished">Include finished</label>
+                <input id="finished" ng-model="finished" type="checkbox" class="checkbox" />
+            </div>
+            <div class="col-lg-3">
+                <label for="mine">Only mine</label>
+                <input id="mine" ng-model="onlyMine" type="checkbox" class="checkbox" />
+            </div>
+            <div dir-server-side-paging class="col-lg-6">
+                <!--<button class="btn btn-sm" ng-click="prev()"><<</button>
+                <input type="number" ng-model="pageNumber" />
+                <button class="btn btn-sm" ng-click="next()">>></button>-->
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-success" ng-click="getPrivateTripsAllParams()">Filter</button>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-lg-2">From</div>
+                <div class="col-lg-2">To</div>
+                <div class="col-lg-3">Driver</div>
+                <div class="col-lg-3">Departure Date</div>
+                <div class="col-lg-2">Is Mine</div>
+            </div>
+        </div>
+        <div ng-repeat="tr in trips" class="row">
+            <div class="col-lg-2">{{ tr.from }}</div>
+            <div class="col-lg-2">{{ tr.to }}</div>
+            <a href="#/drivers/{{tr.driverId}}" class="col-lg-3">{{ tr.driverName }}</a>
+            <a href="#/trips/{{tr.id}}" class=" col-lg-3">{{ tr.departureDate | date:'medium' }}</a>
+            <div class="col-lg-2">{{ tr.isMine | typeFilter }}</div>
+        </div>
+
+    </div>
+    <div dir-no-results class="row">
+    </div>
+    <!--<h1 ng-if="noData" class="text-center">
+        No Results !
+    </h1>-->
+</div>

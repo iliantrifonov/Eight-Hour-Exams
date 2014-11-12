@@ -1,0 +1,22 @@
+extends ../shared/layout
+block main-content
+    h1 Welcome to our event system, there are our past events:
+
+    table.table.table-striped.table-hover
+        thead
+            tr
+                th Title
+                th Category
+                th Date
+                th Evaluation points
+        tbody
+        if data
+            - for(var i = 0; i < data.length; i++) {
+                tr
+                    td #{data[i].title}
+                    td #{data[i].category}
+                    td #{data[i].date}
+                    td #{data[i].evaluation}
+
+                - }
+
